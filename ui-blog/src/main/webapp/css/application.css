@@ -4,7 +4,6 @@ html, body, .container {
 	padding: 0 !important;
 }
 
-
 .header {
 	background: #ccc;
 	font-size: 50px;
@@ -56,4 +55,39 @@ html, body, .container {
 	font-size: 18px;
 	/*position: inline-block;*/
 	overflow: auto
+}
+
+/*  NEW POST  */
+
+label {
+	width: 20%;
+	font-weight: 400;
+	vertical-align: top;
+	float: left;
+}
+#title, #postText {
+	width: 80%;
+}
+#title {
+	font-size: 25px;
+	height: 45px;
+}
+#postText {
+	font-size: 20px;
+}
+.form-inline .form-group {
+	margin-bottom: 30px;
+	width: 100%;
+}
+.new-post-body {
+	padding: 20px 50px;
+}
+.new-post-header {
+	padding-bottom: 20px;
+	font-size: 30px;
+}
+.save-post-btn {
+	float: right;
+	border-radius: 0 !important;
+	width: 200px;
 }

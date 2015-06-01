@@ -1,0 +1,59 @@
+html, body, .container {
+	min-width: 100% !important;
+	margin: 0 !important;
+	padding: 0 !important;
+}
+
+
+.header {
+	background: #ccc;
+	font-size: 50px;
+	padding: 10px 15px;
+	border-bottom: 4px solid #000;
+}
+.blog-body {
+	/*padding: 0 15px;*/
+}
+.left-sidebar {
+	padding: 15px;
+	border-right: 4px solid #000;
+	text-align: center;
+	float: left;
+	width: 30%;
+}
+.sidebar-header {
+	padding-bottom: 15px;
+	font-size: 30px;
+}
+.sidebar-content {
+	padding-bottom: 15px;
+	font-size: 20px;
+}
+.sidebar-action {
+	font-size: 18px;
+}
+
+.blog-content {
+	float: left;
+	width: 70%;
+}
+.blog-post {
+	padding: 15px;
+}
+.post-title {
+	padding-bottom: 10px;
+	font-size: 30px;
+}
+.post-date {
+	float: right;
+}
+.post-content {
+	padding-bottom: 10px;
+	font-size: 20px;
+}
+.edit-delete {
+	float: right;
+	font-size: 18px;
+	/*position: inline-block;*/
+	overflow: auto
+}

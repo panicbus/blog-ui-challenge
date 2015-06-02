@@ -17,6 +17,16 @@ li {
 	padding: 10px 15px;
 	border-bottom: 4px solid #000;
 }
+/*to normalize the clickable links on the header titles */
+.header a, .sidebar-header a {
+	color: #000 !important;
+	text-decoration: none;
+}
+.header a:hover, .sidebar-header a:hover {
+	color: #000 !important;
+	text-decoration: none;
+}
+
 .blog-body {
 	/*padding: 0 15px;*/
 }
@@ -54,6 +64,11 @@ li {
 
 .blog-post {
 	padding: 15px;
+	margin-bottom: 20px;
+	clear: both;
+}
+.blog-post + .blog-post {
+	border-top: 2px solid #ccc;
 }
 .post-title {
 	padding-bottom: 10px;
@@ -61,6 +76,8 @@ li {
 }
 .post-date {
 	float: right;
+  font-size: 18px;
+  margin-top: 22px;
 }
 .post-content {
 	padding-bottom: 10px;
@@ -69,7 +86,6 @@ li {
 .edit-delete {
 	float: right;
 	font-size: 18px;
-	/*position: inline-block;*/
 	overflow: auto
 }
 

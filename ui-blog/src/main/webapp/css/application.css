@@ -3,6 +3,13 @@ html, body, .container {
 	margin: 0 !important;
 	padding: 0 !important;
 }
+ul, li {
+	margin: 0;
+	padding: 0;
+}
+li {
+	list-style-type: none;
+}
 
 .header {
 	background: #ccc;
@@ -35,7 +42,16 @@ html, body, .container {
 .blog-content {
 	float: left;
 	width: 70%;
+	padding: 30px;
 }
+.content-area-title {
+	font-size: 40px;
+	padding-bottom: 15px;
+}
+.content-area-text {
+	font-size: 25px;
+}
+
 .blog-post {
 	padding: 15px;
 }
@@ -65,14 +81,14 @@ label {
 	vertical-align: top;
 	float: left;
 }
-#title, #postText {
+#title, #text {
 	width: 80%;
 }
 #title {
 	font-size: 25px;
 	height: 45px;
 }
-#postText {
+#text {
 	font-size: 20px;
 }
 .form-inline .form-group {
@@ -91,3 +107,4 @@ label {
 	border-radius: 0 !important;
 	width: 200px;
 }
+

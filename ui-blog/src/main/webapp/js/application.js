@@ -79,7 +79,7 @@ $(document).ready(function(){
 						'<div class="form-group"><label for="title">Title</label>' +
 						'<input type="text" class="form-control" id="title" name="title"/></div><br/><div class="form-group">' +
 						'<label for="text">Text</label><textarea class="form-control" rows="12" id="text" name="text"></textarea>' +
-						'</div><br/><input type="submit" class="btn btn-primary edit-post-btn" value="Submit"/></form></div></div>');
+						'</div><br/><div class="edit-btn-container"><input type="submit" class="btn btn-primary edit-post-btn" value="Submit"/></div></form></div></div>');
 
 			// replace the post text in the form fields
 			$('#title').val($('#title').val() + postTitle);

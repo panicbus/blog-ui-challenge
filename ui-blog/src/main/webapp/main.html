@@ -1,3 +1,8 @@
+<!-- App was written and tested using Chrome and Chrome dev tools. Also tested in Firefox. Please take that into consideration when reviewing. Thanks!
+
+Written by Nico Crisafulli -->
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,7 +21,7 @@
 <body>
 	<div class="container">
 		<div class="header">
-			<a href="main.html" class="header-title">It's The Blog</a>
+			<a href="main.html" class="header-title">It's A Blog</a>
 		</div>
 		<div class="blog-body">
 			<div class="left-sidebar">
@@ -42,27 +47,30 @@
 			</div>
 
 			<!-- Container for all the posts -->
-			<div id="blogContent"> <!-- class="blog-content" -->
-				<ul id="mainBlogList">
-					<script id="posts-main-template" type="text/x-handlebars-template">
-						{{#each this}}
-							<li>
-								<div class="main-blog-list blog-post" data-id="{{id}}">
-									<div class="content-area-title">
-										<span class="post-title">{{title}}</span><span class="post-date">{{timestamp}}</span>
+			<div class="blog-content-container">
+				<div id="blogContent">
+					<ul id="mainBlogList">
+						<script id="posts-main-template" type="text/x-handlebars-template">
+							{{#each this}}
+								<li>
+									<div class="main-blog-list blog-post" data-id="{{id}}">
+										<div class="content-area-title">
+											<span class="post-title">{{title}}</span><span class="post-date">{{timestamp}}</span>
+										</div>
+										<div class="content-area-text">
+											{{text}}
+										</div>
+										<div class="edit-delete">
+											<a href="" class="edit-post">Edit</a> | <a href="" class="delete-post">Delete</a>
+										</div>
 									</div>
-									<div class="content-area-text">
-										{{text}}
-									</div>
-									<div class="edit-delete">
-										<a href="" class="edit-post">Edit</a> | <a href="" class="delete-post">Delete</a>
-									</div>
-								</div>
-							</li>
-						{{/each}}
-					</script>
-				</ul>
+								</li>
+							{{/each}}
+						</script>
+					</ul>
+				</div>
 			</div>
+
 		</div>
 	</div>
 

@@ -1,24 +1,26 @@
+// Written by Nico Crisafulli
+
 $(document).ready(function(){
 
 	////////////////////////////////
 	/////// CREATE NEW POST ////////
 	////////////////////////////////
 	$('#newBlogPost').submit(function(e) {
-	  e.preventDefault();
+		e.preventDefault();
 
-	  // Get the data from elements on the page:
-	  var blogTitle = $('#title').val(),
-	    	blogText = $('#text').val(),
-	    	blogText = blogText.replace(/\r?\n/g, '<br />'),
-		    url = '../Blog/api';
+		// Get the data from elements on the page:
+		var blogTitle = $('#title').val(),
+				blogText = $('#text').val(),
+				blogText = blogText.replace(/\r?\n/g, '<br />'),
+				url = '../Blog/api';
 
-	  // Send the data to the API
-	  var postIt = $.post(url, {title: blogTitle, text: blogText});
+		// Send the data to the API
+		var postIt = $.post(url, {title: blogTitle, text: blogText});
 
-	  // after submit, return to main
-	  postIt.done(function( data ) {
-	  	window.location = '../app/main.html';
-	  });
+		// after submit, return to main
+		postIt.done(function( data ) {
+			window.location = '../app/main.html';
+		});
 	});
 
 
@@ -33,30 +35,30 @@ $(document).ready(function(){
 
 		var request_list = $.ajax({
 			url: '../Blog/api',
-      type: 'get',
-      dataType: 'json'
-    });
+			type: 'get',
+			dataType: 'json'
+		});
 
-    request_list.done(function(data){
+		request_list.done(function(data){
 			$(data.blog.posts).each(function(index, elem){
-		    if(elem.id == postId){
-		    	blogTitle = elem.title;
-		    	blogText = elem.text;
-		    	blogDate = elem.timestamp;
-		    	blogId = elem.id;
-			  }
+				if(elem.id == postId){
+					blogTitle = elem.title;
+					blogText = elem.text;
+					blogDate = elem.timestamp;
+					blogId = elem.id;
+				}
 			});
 
 			// append post to content area
-      $('#blogContent').append('<div class="blog-post" data-id="' + blogId + '"><div class="content-area-title">' +
-      														blogTitle + '<span class="post-date">' + blogDate + '</span>' +
-      													'</div><div class="content-area-text">' +
-      														blogText +
-      													'</div>' +
-      													'<div class="edit-delete">' +
+			$('#blogContent').append('<div class="blog-post" data-id="' + blogId + '"><div class="content-area-title">' +
+																	blogTitle + '<span class="post-date">' + blogDate + '</span>' +
+																'</div><div class="content-area-text">' +
+																	blogText +
+																'</div>' +
+																'<div class="edit-delete">' +
 																'<a href="" class="edit-post">Edit</a> | <a href="" class="delete-post">Delete</a></div></div>'
-      													);
-    });
+																);
+		});
 	});
 
 
@@ -86,19 +88,19 @@ $(document).ready(function(){
 			$('#editBlogPost').submit(function(e) {
 				e.preventDefault();
 				blogTitle = $('#title').val();
-	    	blogText = $('#text').val()
-		    url = '../Blog/api/' + postId;
+				blogText = $('#text').val()
+				url = '../Blog/api/' + postId;
 
-			  // Send the data to the API
-		 	 	var postIt = $.post(url, {title: blogTitle, text: blogText});
-		 	 	//refresh once it's done
+				// Send the data to the API
+				var postIt = $.post(url, {title: blogTitle, text: blogText});
+				//refresh once it's done
 				postIt.done(function(){
-				  window.location = '../app/main.html';
+					window.location = '../app/main.html';
 				});
 
 			});
 
-	  });
+		});
 
 		///////////////////////////
 		/////// DELETE POST ///////
@@ -111,9 +113,9 @@ $(document).ready(function(){
 			$.ajax({
 				url: "../Blog/api/" + postId,
 				type: 'DELETE',
-		    success: function(result) {
-		    	$this.remove();
-		    }
+				success: function(result) {
+					$this.remove();
+				}
 			})
 			location.reload();
 		});

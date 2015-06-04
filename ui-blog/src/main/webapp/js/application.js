@@ -12,14 +12,14 @@ $(document).ready(function(){
 		var blogTitle = $('#title').val(),
 				blogText = $('#text').val(),
 				blogText = blogText.replace(/\r?\n/g, '<br />'),
-				url = '../Blog/api';
+				url = '/Blog/api';
 
 		// Send the data to the API
 		var postIt = $.post(url, {title: blogTitle, text: blogText});
 
 		// after submit, return to main
 		postIt.done(function( data ) {
-			window.location = '../app/main.html';
+			window.location = '/app/main.html';
 		});
 	});
 
@@ -34,7 +34,7 @@ $(document).ready(function(){
 		$('#blogContent').empty();
 
 		var request_list = $.ajax({
-			url: '../Blog/api',
+			url: '/Blog/api',
 			type: 'get',
 			dataType: 'json'
 		});
@@ -51,7 +51,8 @@ $(document).ready(function(){
 
 			// append post to content area
 			$('#blogContent').append('<div class="blog-post" data-id="' + blogId + '"><div class="content-area-title">' +
-																	blogTitle + '<span class="post-date">' + blogDate + '</span>' +
+																'<span class="post-title col-xs-12 col-md-7">' +	blogTitle +
+																'</span><span class="post-date col-xs-12 col-md-5">' + blogDate + '</span>' +
 																'</div><div class="content-area-text">' +
 																	blogText +
 																'</div>' +
@@ -75,7 +76,7 @@ $(document).ready(function(){
 
 			// first clear the div then append the editing form
 			$('#blogContent').empty().append('<div class="edit-post-body" data-id="' + postId + '"><div class="edit-post-header">Edit Post</div>' +
-						'<div class="post-title"><form action="../app/main.html" method="post" id="editBlogPost" class="form-inline">' +
+						'<div class="post-title"><form action="/app/main.html" method="post" id="editBlogPost" class="form-inline">' +
 						'<div class="form-group"><label for="title">Title</label>' +
 						'<input type="text" class="form-control" id="title" name="title"/></div><br/><div class="form-group">' +
 						'<label for="text">Text</label><textarea class="form-control" rows="12" id="text" name="text"></textarea>' +
@@ -89,13 +90,13 @@ $(document).ready(function(){
 				e.preventDefault();
 				blogTitle = $('#title').val();
 				blogText = $('#text').val()
-				url = '../Blog/api/' + postId;
+				url = '/Blog/api/' + postId;
 
 				// Send the data to the API
 				var postIt = $.post(url, {title: blogTitle, text: blogText});
 				//refresh once it's done
 				postIt.done(function(){
-					window.location = '../app/main.html';
+					window.location = '/app/main.html';
 				});
 
 			});
@@ -111,7 +112,7 @@ $(document).ready(function(){
 			e.preventDefault();
 			var postId = $this.attr("data-id");
 			$.ajax({
-				url: "../Blog/api/" + postId,
+				url: "/Blog/api/" + postId,
 				type: 'DELETE',
 				success: function(result) {
 					$this.remove();

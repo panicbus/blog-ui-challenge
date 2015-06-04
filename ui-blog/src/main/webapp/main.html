@@ -31,7 +31,7 @@ Written by Nico Crisafulli -->
 				<div class="sidebar-content">
 
 					<ul id="postList">
-
+						<!-- Handlebars template for displaying post titles sidebar list -->
 						<script id="posts-sidebar-template" type="text/x-handlebars-template">
 							{{#each this}}
 								<li><a href="" class="post-list-post" data-id="{{id}}">{{title}}</a></li>
@@ -42,7 +42,7 @@ Written by Nico Crisafulli -->
 
 				</div>
 				<div class="sidebar-action">
-					<a href="../app/new-post.html" class="create-new">Create A New Post</a>
+					<a href="/app/new-post.html" class="create-new">Create A New Post</a>
 				</div>
 			</div>
 
@@ -50,6 +50,7 @@ Written by Nico Crisafulli -->
 			<div class="blog-content-container col-xs-12 col-md-8">
 				<div id="blogContent">
 					<ul id="mainBlogList">
+						<!-- Handlebars template for displaying all posts -->
 						<script id="posts-main-template" type="text/x-handlebars-template">
 							{{#each this}}
 								<li>
@@ -85,7 +86,7 @@ Written by Nico Crisafulli -->
 	<script>
 		(function(){
 			// add list of post titles to the sidebar via Handlebars
-			$.getJSON('../Blog/api', function(data){
+			$.getJSON('/Blog/api', function(data){
 				// if (data.blog.posts === []){
 				// 	alert('boom');
 				// 	$('#postList').html('<div class="empty-list>There are no posts yet</div>"');

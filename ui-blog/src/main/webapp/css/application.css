@@ -100,13 +100,11 @@ _______________________________________*/
 	border-top: 2px solid #191919;
 }
 .post-title {
-	padding-bottom: 10px;
 	font-size: 30px;
 }
 .post-date {
-	float: right;
 	font-size: 18px;
-	margin-top: 25px;
+	margin-top: 13px;
 }
 .post-content {
 	padding-bottom: 10px;

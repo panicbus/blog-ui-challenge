@@ -2,6 +2,9 @@ html, body, .container {
 	min-width: 100% !important;
 	margin: 0 !important;
 	padding: 0 !important;
+	height: 100%;
+	font-family: "Nixie One";
+	font-weight: 600;
 }
 ul, li {
 	margin: 0;
@@ -10,32 +13,34 @@ ul, li {
 li {
 	list-style-type: none;
 }
-
+.blog-body {
+	height: 100%;
+}
 .header {
-	background: #ccc;
+	background: #cd5c5c;
 	font-size: 50px;
 	padding: 10px 15px;
 	border-bottom: 4px solid #000;
 }
 /*to normalize the clickable links on the header titles */
-.header a, .sidebar-header a {
+.header a {
 	color: #000 !important;
 	text-decoration: none;
 }
-.header a:hover, .sidebar-header a:hover {
+.header a:hover {
 	color: #000 !important;
 	text-decoration: none;
+}
+.left-sidebar, #blogContent {
+	height: 100%;
 }
 
-.blog-body {
-	/*padding: 0 15px;*/
-}
 .left-sidebar {
 	padding: 15px;
-	border-right: 4px solid #000;
 	text-align: center;
 	float: left;
-	width: 30%;
+	width: 30% !important;
+	background: bisque;
 }
 .sidebar-header {
 	padding-bottom: 15px;
@@ -45,14 +50,43 @@ li {
 	padding-bottom: 15px;
 	font-size: 20px;
 }
+.sidebar-content li {
+	text-decoration: none;
+	margin-bottom: 10px;
+/*  -webkit-transition: all 200ms ease-out;
+  -moz-transition: all 200ms ease-out;
+  transition: all 200ms ease-out;*/
+}
+/*.sidebar-content li:hover {
+	background: #2980b9;
+	border-radius: 50px;
+	color: #fff;
+}*/
 .sidebar-action {
-	font-size: 18px;
+	margin-top: 20px;
+}
+.create-new {
+	background: #2980b9;
+	padding: 10px 30px;
+	font-size: 22px;
+	color: #fff !important;
+  -webkit-transition: all 200ms ease-out;
+  -moz-transition: all 200ms ease-out;
+  transition: all 200ms ease-out;
+}
+a.create-new:hover {
+	text-decoration: none;
+}
+.create-new:hover {
+	background: #34495e;
 }
 
-.blog-content {
+#blogContent {
 	float: left;
-	width: 70%;
+	width: 70% !important;
 	padding: 30px;
+	border-left: 4px solid #000;
+	background: orange;
 }
 .content-area-title {
 	font-size: 40px;
@@ -67,7 +101,7 @@ li {
 	margin-bottom: 20px;
 	clear: both;
 }
-.blog-post + .blog-post {
+#blogContent li + li {
 	border-top: 2px solid #ccc;
 }
 .post-title {
@@ -77,7 +111,7 @@ li {
 .post-date {
 	float: right;
   font-size: 18px;
-  margin-top: 22px;
+  margin-top: 25px;
 }
 .post-content {
 	padding-bottom: 10px;
@@ -90,12 +124,19 @@ li {
 }
 
 /*  NEW POST  */
-
 label {
-	width: 20%;
+	width: 15%;
 	font-weight: 400;
 	vertical-align: top;
 	float: left;
+}
+.new-post-header {
+	padding-bottom: 20px;
+	font-size: 35px;
+}
+.new-post-body {
+	background: #ffe4c4;
+	height: 100%;
 }
 #title, #text {
 	width: 80%;
@@ -114,13 +155,23 @@ label {
 .new-post-body {
 	padding: 20px 50px;
 }
-.new-post-header {
-	padding-bottom: 20px;
-	font-size: 30px;
-}
 .save-post-btn {
 	float: right;
 	border-radius: 0 !important;
 	width: 200px;
+	margin-right: 60px;
 }
 
+/* EDIT POST */
+.edit-post-body {
+	padding: 10px;
+}
+.edit-post-header {
+	padding-bottom: 10px;
+	font-size: 24px;
+}
+.edit-post-btn {
+	width: 200px;
+	border-radius: 0 !important;
+	margin: 0 auto;
+}

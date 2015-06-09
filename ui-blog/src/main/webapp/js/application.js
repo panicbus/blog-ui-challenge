@@ -11,14 +11,13 @@ $(document).ready(function(){
 		// Get the data from elements on the page:
 		var blogTitle = $('#title').val(),
 				blogText = $('#text').val(),
-				blogText = blogText.replace(/\r?\n/g, '<br />'),
 				url = '/Blog/api';
 
 		// Send the data to the API
 		var postIt = $.post(url, {title: blogTitle, text: blogText});
 
 		// after submit, return to main
-		postIt.done(function( data ) {
+		postIt.done(function(data) {
 			window.location = '/app/main.html';
 		});
 	});
@@ -27,11 +26,14 @@ $(document).ready(function(){
 	////////////////////////////////
 	/////// VIEW SINGLE POST ///////
 	////////////////////////////////
-	$('#postList').on('click', 'a.post-list-post', function(e){
+	$('#postList').on('click', 'li', function(e){
 		e.preventDefault();
-		var $this = $(this);
-		var postId = $(this).attr('data-id');
+		var $this = $(this),
+				postId = $(this).children('.post-list-post').attr('data-id'); // grab the attr from the child element
 		$('#blogContent').empty();
+
+		$('li').removeClass('current');
+		$this.addClass('current');
 
 		var request_list = $.ajax({
 			url: '/Blog/api',
@@ -63,62 +65,63 @@ $(document).ready(function(){
 	});
 
 
-		///////////////////////////
-		/////// EDIT POST /////////
-		///////////////////////////
-		$('#blogContent').on('click', '.edit-post', function(e){
-			var $this = $(this).closest('.blog-post');
+	///////////////////////////
+	/////// EDIT POST /////////
+	///////////////////////////
+	$('#blogContent').on('click', '.edit-post', function(e){
+		var $this = $(this).closest('.blog-post');
+		e.preventDefault();
+		var postId = $this.attr('data-id');
+				// grab the text & remove extra white space
+				postTitle = $this.find('.post-title').text().trim();
+				postText = $this.find('.content-area-text').text().trim();
+
+		// first clear the div then append the editing form
+		$('#blogContent').empty().append('<div class="edit-post-body" data-id="' + postId + '"><div class="edit-post-header">Edit Post</div>' +
+					'<div class="post-title"><form action="/app/main.html" method="post" id="editBlogPost" class="form-inline">' +
+					'<div class="form-group"><label for="title">Title</label>' +
+					'<input type="text" class="form-control" id="title" name="title"/></div><br/><div class="form-group">' +
+					'<label for="text">Text</label><textarea class="form-control" rows="12" id="text" name="text"></textarea>' +
+					'</div><br/><div class="edit-btn-container"><input type="submit" class="btn btn-primary edit-post-btn" value="Submit"/></div></form></div></div>');
+
+		// add the post text in the form fields to edit and resubmit, the double selector & val() was necessary
+		$('#title').val($('#title').val() + postTitle);
+		$('#text').val($('#text').val() + postText);
+
+		$('#editBlogPost').submit(function(e) {
 			e.preventDefault();
-			var postId = $this.attr('data-id');
-					// grab the text & remove extra white space
-					postTitle = $this.find('.post-title').text().trim();
-					postText = $this.find('.content-area-text').text().trim();
+			blogTitle = $('#title').val();
+			blogText = $('#text').val()
+			url = '/Blog/api/' + postId;
 
-			// first clear the div then append the editing form
-			$('#blogContent').empty().append('<div class="edit-post-body" data-id="' + postId + '"><div class="edit-post-header">Edit Post</div>' +
-						'<div class="post-title"><form action="/app/main.html" method="post" id="editBlogPost" class="form-inline">' +
-						'<div class="form-group"><label for="title">Title</label>' +
-						'<input type="text" class="form-control" id="title" name="title"/></div><br/><div class="form-group">' +
-						'<label for="text">Text</label><textarea class="form-control" rows="12" id="text" name="text"></textarea>' +
-						'</div><br/><div class="edit-btn-container"><input type="submit" class="btn btn-primary edit-post-btn" value="Submit"/></div></form></div></div>');
-
-			// replace the post text in the form fields
-			$('#title').val($('#title').val() + postTitle);
-			$('#text').val($('#text').val() + postText);
-
-			$('#editBlogPost').submit(function(e) {
-				e.preventDefault();
-				blogTitle = $('#title').val();
-				blogText = $('#text').val()
-				url = '/Blog/api/' + postId;
-
-				// Send the data to the API
-				var postIt = $.post(url, {title: blogTitle, text: blogText});
-				//refresh once it's done
-				postIt.done(function(){
-					window.location = '/app/main.html';
-				});
-
+			// Send the data to the API
+			var postIt = $.post(url, {title: blogTitle, text: blogText});
+			//refresh once it's done
+			postIt.done(function(){
+				window.location = '/app/main.html';
 			});
 
 		});
 
-		///////////////////////////
-		/////// DELETE POST ///////
-		///////////////////////////
+	});
 
-		$('#blogContent').on('click', '.delete-post', function(e){
-			var $this = $(this).closest('.blog-post');
-			e.preventDefault();
-			var postId = $this.attr("data-id");
-			$.ajax({
-				url: "/Blog/api/" + postId,
-				type: 'DELETE',
-				success: function(result) {
-					$this.remove();
-				}
-			})
-			location.reload();
-		});
+	///////////////////////////
+	/////// DELETE POST ///////
+	///////////////////////////
+
+	$('#blogContent').on('click', '.delete-post', function(e){
+		e.preventDefault();
+		var $this = $(this).closest('.blog-post'),
+				postId = $this.attr("data-id");
+		$.ajax({
+			url: "/Blog/api/" + postId,
+			type: 'DELETE',
+			success: function(result) {
+				$this.remove();
+			}
+		})
+		location.reload();
+	});
+
 
 });
